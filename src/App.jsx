@@ -1,13 +1,4 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from "react-router-dom";
-import {ThemeProvider} from '@material-ui/core/styles'
-import theme from './temaConfig'
-import Contenedor from './componentes/Contenedor'
 // import Login from './componentes/login/Login';
 import Login from './componentes/vistas/Login';
 
