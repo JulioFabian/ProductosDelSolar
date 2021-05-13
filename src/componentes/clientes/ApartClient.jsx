@@ -22,8 +22,6 @@ const ApartClient = () => {
     telefono: '',
     tipo: '',
     direccion: '',
-    fecha: '',
-    hora: ''
   });
 
   const handleChange=e=>{
@@ -63,8 +61,6 @@ const ApartClient = () => {
     f.append("telefono", compradoresSeleccionado.telefono);
     f.append("tipo", compradoresSeleccionado.tipo);
     f.append("direccion", compradoresSeleccionado.direccion);
-    f.append("fecha", compradoresSeleccionado.fecha);
-    f.append("hora", compradoresSeleccionado.hora);
     f.append("METHOD", "POST");
     await axios.post(baseUrl, f)
     .then(response=>{
@@ -78,12 +74,10 @@ const ApartClient = () => {
   const peticionPut=async()=>{
     var f = new FormData();
     f.append("nombre", compradoresSeleccionado.nombre);
-    f.append("appellido", compradoresSeleccionado.apellido);
+    f.append("apellido", compradoresSeleccionado.apellido);
     f.append("telefono", compradoresSeleccionado.telefono);
     f.append("tipo", compradoresSeleccionado.tipo);
     f.append("direccion", compradoresSeleccionado.direccion);
-    f.append("fecha", compradoresSeleccionado.fecha);
-    f.append("hora", compradoresSeleccionado.hora);
     f.append("METHOD", "PUT");
     await axios.post(baseUrl, f, {params: {id: compradoresSeleccionado.id}})
     .then(response=>{
@@ -95,8 +89,6 @@ const ApartClient = () => {
           compradores.telefono=compradoresSeleccionado.telefono;
           compradores.tipo=compradoresSeleccionado.tipo;
           compradores.direccion=compradoresSeleccionado.direccion;
-          compradores.fecha=compradoresSeleccionado.fecha;
-          compradores.hora=compradoresSeleccionado.hora;
         }
       });
       setData(dataNueva);
@@ -175,8 +167,6 @@ const ApartClient = () => {
                 <th>Telefono</th>
                 <th>Tipo</th>
                 <th>Dirección</th>
-                <th>Fecha</th>
-                <th>Hora</th>
                 <th>Acciones</th>
                 </tr>
             </thead>
@@ -189,8 +179,6 @@ const ApartClient = () => {
                     <td>{compradores.telefono}</td>
                     <td>{compradores.tipo}</td>
                     <td>{compradores.direccion}</td>
-                    <td>{compradores.fecha}</td>
-                    <td>{compradores.hora}</td>
                 <td>
 
                 <IconButton 
@@ -245,10 +233,6 @@ const ApartClient = () => {
                     <input type="text" className="form-control" name="tipo" onChange={handleChange}/>
                     <label>Dirección: </label>
                     <input type="text" className="form-control" name="direccion" onChange={handleChange}/>
-                    <label>Fecha: </label>
-                    <input type="date" className="form-control" name="fecha" onChange={handleChange}/>
-                    <label>Hora: </label>
-                    <input type="time" className="form-control" name="hora" onChange={handleChange}/>
                 </div>
             </ModalBody>
             <ModalFooter>
@@ -274,10 +258,6 @@ const ApartClient = () => {
                 <input type="text" className="form-control" name="tipo" onChange={handleChange} value={compradoresSeleccionado && compradoresSeleccionado.tipo}/>
                 <label>Dirección: </label>
                 <input type="text" className="form-control" name="direccion" onChange={handleChange} value={compradoresSeleccionado && compradoresSeleccionado.direccion}/>
-                <label>Fecha: </label>
-                <input type="date" className="form-control" name="fecha" onChange={handleChange} value={compradoresSeleccionado && compradoresSeleccionado.fecha}/>
-                <label>Hora: </label>
-                <input type="time" className="form-control" name="hora" onChange={handleChange} value={compradoresSeleccionado && compradoresSeleccionado.hora}/>
                 </div>
             </ModalBody>
             <ModalFooter>
