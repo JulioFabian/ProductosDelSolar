@@ -15,7 +15,7 @@ const ApartClient = () => {
   const [modalInsertar, setModalInsertar]= useState(false);
   const [modalEditar, setModalEditar]= useState(false);
   const [modalEliminar, setModalEliminar]= useState(false);
-  const [compradoresSeleccionado, setCompradoresSeleccionado]=useState({
+  const [clienteSeleccionado, setClienteSeleccionado]=useState({
     id: '',
     nombre: '',
     apellido: '',
@@ -26,11 +26,11 @@ const ApartClient = () => {
 
   const handleChange=e=>{
     const {name, value}=e.target;
-    setCompradoresSeleccionado((prevState)=>({
+    setClienteSeleccionado((prevState)=>({
       ...prevState,
       [name]: value
     }))
-    console.log(compradoresSeleccionado);
+    console.log(clienteSeleccionado);
   }
 
   const abrirCerrarModalInsertar=()=>{
@@ -56,11 +56,11 @@ const ApartClient = () => {
 
   const peticionPost=async()=>{
     var f = new FormData();
-    f.append("nombre", compradoresSeleccionado.nombre);
-    f.append("apellido", compradoresSeleccionado.apellido);
-    f.append("telefono", compradoresSeleccionado.telefono);
-    f.append("tipo", compradoresSeleccionado.tipo);
-    f.append("direccion", compradoresSeleccionado.direccion);
+    f.append("nombre", clienteSeleccionado.nombre);
+    f.append("apellido", clienteSeleccionado.apellido);
+    f.append("telefono", clienteSeleccionado.telefono);
+    f.append("tipo", clienteSeleccionado.tipo);
+    f.append("direccion", clienteSeleccionado.direccion);
     f.append("METHOD", "POST");
     await axios.post(baseUrl, f)
     .then(response=>{
@@ -73,22 +73,22 @@ const ApartClient = () => {
 
   const peticionPut=async()=>{
     var f = new FormData();
-    f.append("nombre", compradoresSeleccionado.nombre);
-    f.append("apellido", compradoresSeleccionado.apellido);
-    f.append("telefono", compradoresSeleccionado.telefono);
-    f.append("tipo", compradoresSeleccionado.tipo);
-    f.append("direccion", compradoresSeleccionado.direccion);
+    f.append("nombre", clienteSeleccionado.nombre);
+    f.append("apellido", clienteSeleccionado.apellido);
+    f.append("telefono", clienteSeleccionado.telefono);
+    f.append("tipo", clienteSeleccionado.tipo);
+    f.append("direccion", clienteSeleccionado.direccion);
     f.append("METHOD", "PUT");
-    await axios.post(baseUrl, f, {params: {id: compradoresSeleccionado.id}})
+    await axios.post(baseUrl, f, {params: {id: clienteSeleccionado.id}})
     .then(response=>{
       var dataNueva= data;
-      dataNueva.map(compradores=>{
-        if(compradores.id===compradoresSeleccionado.id){
-          compradores.nombre=compradoresSeleccionado.nombre;
-          compradores.apellido=compradoresSeleccionado.apellido;
-          compradores.telefono=compradoresSeleccionado.telefono;
-          compradores.tipo=compradoresSeleccionado.tipo;
-          compradores.direccion=compradoresSeleccionado.direccion;
+      dataNueva.map(cliente=>{
+        if(cliente.id===clienteSeleccionado.id){
+          cliente.nombre=clienteSeleccionado.nombre;
+          cliente.apellido=clienteSeleccionado.apellido;
+          cliente.telefono=clienteSeleccionado.telefono;
+          cliente.tipo=clienteSeleccionado.tipo;
+          cliente.direccion=clienteSeleccionado.direccion;
         }
       });
       setData(dataNueva);
@@ -101,17 +101,17 @@ const ApartClient = () => {
   const peticionDelete=async()=>{
     var f = new FormData();
     f.append("METHOD", "DELETE");
-    await axios.post(baseUrl, f, {params: {id: compradoresSeleccionado.id}})
+    await axios.post(baseUrl, f, {params: {id: clienteSeleccionado.id}})
     .then(response=>{
-      setData(data.filter(compradores=>compradores.id!==compradoresSeleccionado.id));
+      setData(data.filter(cliente=>cliente.id!==clienteSeleccionado.id));
       abrirCerrarModalEliminar();
     }).catch(error=>{
       console.log(error);
     })
   }
 
-  const seleccionarCompradores=(compradores, caso)=>{
-    setCompradoresSeleccionado(compradores);
+  const seleccionarCliente=(cliente, caso)=>{
+    setClienteSeleccionado(cliente);
 
     (caso==="Editar")?
     abrirCerrarModalEditar():
@@ -171,14 +171,14 @@ const ApartClient = () => {
                 </tr>
             </thead>
             <tbody>
-                {data.map(compradores=>(
-                <tr key={compradores.id}>
-                    <td>{compradores.id}</td>
-                    <td>{compradores.nombre}</td>
-                    <td>{compradores.apellido}</td>
-                    <td>{compradores.telefono}</td>
-                    <td>{compradores.tipo}</td>
-                    <td>{compradores.direccion}</td>
+                {data.map(cliente=>(
+                <tr key={cliente.id}>
+                    <td>{cliente.id}</td>
+                    <td>{cliente.nombre}</td>
+                    <td>{cliente.apellido}</td>
+                    <td>{cliente.telefono}</td>
+                    <td>{cliente.tipo}</td>
+                    <td>{cliente.direccion}</td>
                 <td>
 
                 <IconButton 
@@ -186,7 +186,7 @@ const ApartClient = () => {
                     className="button muted-button"
                     fontsize="small"
                     onClick={
-                        ()=>seleccionarCompradores(compradores, "Editar")
+                        ()=>seleccionarCliente(cliente, "Editar")
                     }
                     aria-label="create"
                 >
@@ -197,7 +197,7 @@ const ApartClient = () => {
                     color="inherit"
                     className="button muted-button"
                     onClick = {
-                        ()=>seleccionarCompradores(compradores, "Eliminar")
+                        ()=>seleccionarCliente(cliente, "Eliminar")
                     }
                     aria-label="delete"
                 >
@@ -249,15 +249,15 @@ const ApartClient = () => {
             <ModalBody>
                 <div className="form-group">
                 <label>Nombre: </label>
-                <input type="text" className="form-control" name="nombre" onChange={handleChange} value={compradoresSeleccionado && compradoresSeleccionado.nombre}/>
+                <input type="text" className="form-control" name="nombre" onChange={handleChange} value={clienteSeleccionado && clienteSeleccionado.nombre}/>
                 <label>Apellido: </label>
-                <input type="text" className="form-control" name="apellido" onChange={handleChange} value={compradoresSeleccionado && compradoresSeleccionado.apellido}/>
+                <input type="text" className="form-control" name="apellido" onChange={handleChange} value={clienteSeleccionado && clienteSeleccionado.apellido}/>
                 <label>telefono: </label>
-                <input type="text" className="form-control" name="telefono" onChange={handleChange} value={compradoresSeleccionado && compradoresSeleccionado.telefono}/>
+                <input type="text" className="form-control" name="telefono" onChange={handleChange} value={clienteSeleccionado && clienteSeleccionado.telefono}/>
                 <label>Tipo: </label>
-                <input type="text" className="form-control" name="tipo" onChange={handleChange} value={compradoresSeleccionado && compradoresSeleccionado.tipo}/>
+                <input type="text" className="form-control" name="tipo" onChange={handleChange} value={clienteSeleccionado && clienteSeleccionado.tipo}/>
                 <label>Dirección: </label>
-                <input type="text" className="form-control" name="direccion" onChange={handleChange} value={compradoresSeleccionado && compradoresSeleccionado.direccion}/>
+                <input type="text" className="form-control" name="direccion" onChange={handleChange} value={clienteSeleccionado && clienteSeleccionado.direccion}/>
                 </div>
             </ModalBody>
             <ModalFooter>
@@ -270,7 +270,7 @@ const ApartClient = () => {
                 <ModalBody>
                 <br />
                 <br />
-                ¿Estás seguro que deseas eliminar el Cliente {compradoresSeleccionado && compradoresSeleccionado.nombre}?
+                ¿Estás seguro que deseas eliminar el Cliente {clienteSeleccionado && clienteSeleccionado.nombre}?
                 </ModalBody>
                 <ModalFooter>
                 <button className="btn btn-danger" onClick={()=>peticionDelete()}>
