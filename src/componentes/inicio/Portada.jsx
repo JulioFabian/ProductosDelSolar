@@ -99,6 +99,15 @@ const images = [
     },
   }));
 
+  const style1 = {
+    width: "40%", 
+    height:"40%", 
+    objectFit: "cover",
+    alignItems: "center",
+    justifyContent: "center",
+    
+  };
+
 const Portada = () => {
 
     const classes = useStyles();
@@ -107,8 +116,8 @@ const Portada = () => {
         <div>
             <Grid>
                 <img 
-                src={LOGODELSOLAR} 
-                style={{ width: "100%", height:"100%", objectFit: "cover"}} 
+                src={LOGODELSOLAR}
+                className="Portada-center"
                 alt="brand"
                 />
             </Grid>

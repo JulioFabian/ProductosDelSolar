@@ -5,7 +5,8 @@ import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
+import './Proveedores.css'
 
 const ApartSupplier = () => {
   const baseUrl="http://localhost/apiInventario/indexProv.php";
@@ -112,11 +113,26 @@ const ApartSupplier = () => {
     peticionGet();
   },[])
 
+  const style2 = {
+    color: "#203769",
+    fontSize: "50",
+  };
+
   return (
-    <div style={{textAlign: 'center'}}>
-        <div className="flex-large">
+    <div style={{
+      alignItems: "center",
+      textAlign: "center",
+      display: "flex",
+      marginTop: "20px",
+      marginLeft: "410px",
+      marginRight: "360px",
+      color: "black",
+    }}>
+        <div className="felx-large">
             <div>
+            <h1>Proveedores</h1>
             <IconButton 
+                    style={style2}
                     color="primary"
                     className="button muted-button"
                     fontsize="large"
@@ -125,12 +141,12 @@ const ApartSupplier = () => {
                     }
                     aria-label="create"
                 >
-                    <AddCircleIcon fontSize="large" 
+                    <AddCircleOutlineOutlinedIcon style={style2}
                 />
                 </IconButton>
             {/* <button className="btn btn-success" onClick={()=>abrirCerrarModalInsertar()}>Insertar</button> */}
             <br />
-            <table className="table table-striped">
+            <table className="Proveedores-center">
             <thead>
                 <tr>
                 <th>ID</th>
@@ -199,7 +215,7 @@ const ApartSupplier = () => {
                 </div>
             </ModalBody>
             <ModalFooter>
-                <button className="btn btn-primary" onClick={()=>peticionPost()}>Insertar</button>{"   "}
+                <button style={{backgroundColor: '#203769', color: '#ffffff'}} className="btn" onClick={()=>peticionPost()}>Insertar</button>{"   "}
                 <button className="btn btn-danger" onClick={()=>abrirCerrarModalInsertar()}>Cancelar</button>
             </ModalFooter>
             </Modal>
@@ -220,7 +236,7 @@ const ApartSupplier = () => {
                 </div>
             </ModalBody>
             <ModalFooter>
-                <button className="btn btn-primary" onClick={()=>peticionPut()}>Editar</button>{"   "}
+                <button style={{backgroundColor: '#203769'}} className="btn btn-primary" onClick={()=>peticionPut()}>Editar</button>{"   "}
                 <button className="btn btn-danger" onClick={()=>abrirCerrarModalEditar()}>Cancelar</button>
             </ModalFooter>
             </Modal>
@@ -250,6 +266,11 @@ const ApartSupplier = () => {
 }
 
 export default ApartSupplier;
+
+
+
+
+
 
 
 

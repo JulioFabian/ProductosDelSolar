@@ -1,12 +1,7 @@
-.Portada-carrete{
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-.Portada-center{
+.Proveedores-center{
     text-align: center;
     display: block;
     justify-content: center;
     align-items: center;
     margin: auto;
-    width: 40%;
   }

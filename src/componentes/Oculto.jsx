@@ -4,11 +4,11 @@ import {withWidth, Typography, Hidden} from '@material-ui/core'
 const Oculto = (props) => {
     return (
         <div>
-            <Typography variant="h6" color="initial">
+            <Typography  variant="h6" color="initial">
                 Ancho: {props.width}
             </Typography>
 
-            <Hidden mdDown>
+            <Hidden  mdDown>
             </Hidden>
 
             <Hidden only='lg'>

@@ -5,7 +5,9 @@ import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+import './Client.css'; 
+import { Grid } from '@material-ui/core';
+import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 
 const ApartClient = () => {
   const baseUrl="http://localhost/apiInventario/indexComp.php";
@@ -75,10 +77,8 @@ const ApartClient = () => {
 
   const peticionPut=async()=>{
     var f = new FormData();
-    console.log(compradoresSeleccionado);
-    f.append("id", compradoresSeleccionado.id);
     f.append("nombre", compradoresSeleccionado.nombre);
-    f.append("apellido", compradoresSeleccionado.apellido);
+    f.append("appellido", compradoresSeleccionado.apellido);
     f.append("telefono", compradoresSeleccionado.telefono);
     f.append("tipo", compradoresSeleccionado.tipo);
     f.append("direccion", compradoresSeleccionado.direccion);
@@ -130,11 +130,26 @@ const ApartClient = () => {
     peticionGet();
   },[])
 
+  const style2 = {
+    color: "#203769",
+    fontSize: "50",
+  };
+
   return (
-    <div style={{textAlign: 'center'}}>
-        <div className="flex-large">
+    <div style={{
+      alignItems: "center",
+      textAlign: "center",
+      display: "flex",
+      marginTop: "20px",
+      marginLeft: "230px",
+      marginRight: "190px",
+      color: "black",
+    }}>
+        <div>
             <div>
+            <h1>Clientes</h1>
             <IconButton 
+                    style={style2}
                     color="primary"
                     className="button muted-button"
                     fontsize="large"
@@ -143,12 +158,15 @@ const ApartClient = () => {
                     }
                     aria-label="create"
                 >
-                    <AddCircleIcon fontSize="large" 
+                    <AddCircleOutlineOutlinedIcon style={style2}
                 />
                 </IconButton>
             {/* <button className="btn btn-success" onClick={()=>abrirCerrarModalInsertar()}>Insertar</button> */}
             <br />
-            <table className="table table-striped">
+            
+            <div className="flex-large">
+
+            <table className="Client-center">
             <thead>
                 <tr>
                 <th>ID</th>
@@ -210,6 +228,7 @@ const ApartClient = () => {
 
             </table>
 
+            </div>
 
             <Modal isOpen={modalInsertar}>
                 <br />
@@ -227,13 +246,13 @@ const ApartClient = () => {
                     <label>Dirección: </label>
                     <input type="text" className="form-control" name="direccion" onChange={handleChange}/>
                     <label>Fecha: </label>
-                    <input type="text" className="form-control" name="fecha" onChange={handleChange}/>
+                    <input type="date" className="form-control" name="fecha" onChange={handleChange}/>
                     <label>Hora: </label>
                     <input type="time" className="form-control" name="hora" onChange={handleChange}/>
                 </div>
             </ModalBody>
             <ModalFooter>
-                <button className="btn btn-primary" onClick={()=>peticionPost()}>Insertar</button>{"   "}
+                <button style={{backgroundColor: '#203769', color: '#ffffff'}} className="btn" onClick={()=>peticionPost()}>Insertar</button>{"   "}
                 <button className="btn btn-danger" onClick={()=>abrirCerrarModalInsertar()}>Cancelar</button>
             </ModalFooter>
             </Modal>
@@ -256,13 +275,13 @@ const ApartClient = () => {
                 <label>Dirección: </label>
                 <input type="text" className="form-control" name="direccion" onChange={handleChange} value={compradoresSeleccionado && compradoresSeleccionado.direccion}/>
                 <label>Fecha: </label>
-                <input type="text" className="form-control" name="fecha" onChange={handleChange} value={compradoresSeleccionado && compradoresSeleccionado.fecha}/>
+                <input type="date" className="form-control" name="fecha" onChange={handleChange} value={compradoresSeleccionado && compradoresSeleccionado.fecha}/>
                 <label>Hora: </label>
-                <input type="text" className="form-control" name="hora" onChange={handleChange} value={compradoresSeleccionado && compradoresSeleccionado.hora}/>
+                <input type="time" className="form-control" name="hora" onChange={handleChange} value={compradoresSeleccionado && compradoresSeleccionado.hora}/>
                 </div>
             </ModalBody>
             <ModalFooter>
-                <button className="btn btn-primary" onClick={()=>peticionPut()}>Editar</button>{"   "}
+                <button style={{backgroundColor: '#203769', color: '#ffffff'}} className="btn" onClick={()=>peticionPut()}>Editar</button>{"   "}
                 <button className="btn btn-danger" onClick={()=>abrirCerrarModalEditar()}>Cancelar</button>
             </ModalFooter>
             </Modal>

@@ -2,6 +2,7 @@ import React from 'react'
 import {AppBar, IconButton, makeStyles, Toolbar, Typography, Button} from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu';
 import LOGODELSOLAR from './imagenes/LOGODELSOLAR.png'
+import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
     menuButton: {
@@ -21,18 +22,28 @@ const useStyles = makeStyles(theme => ({
       },
 }))
 
+const style = {
+
+    background : '#53c4cc'
+};
+const style2 = {
+
+    color : '#ffffff'
+};
+
 const Navbar = (props) => {
     const classes = useStyles()
     return (
-        <AppBar className={classes.appBar}>
-            <Toolbar>
+        <AppBar className={classes.appBar} style={style}>
+            <Toolbar style={style2} >
                 <IconButton 
-                    color = "inherit"
+                    style={style}
+                    color="inherit"
                     aria-label="menu" 
                     className={classes.menuButton}
                     onClick={() => props.accionAbrir()}
                 >
-                    <MenuIcon />
+                    <MenuIcon style={style}/>
                 </IconButton>
                 <Typography className={classes.title}>
                 <img src={LOGODELSOLAR} width="50" length="50"/>

@@ -5,7 +5,8 @@ import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+import './Inventario.css';
+import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 
 const ApartInventario = () => {
   const baseUrl="http://localhost/apiInventario/index.php";
@@ -128,12 +129,28 @@ const ApartInventario = () => {
     peticionGet();
   },[])
 
+  const style2 = {
+    color: "#203769",
+    fontSize: "50",
+  };
+
   return (
-    <div style={{textAlign: 'center'}}>
-        <div className="flex-large">
+    <div
+      style={{
+        alignItems: "center",
+        textAlign: "center",
+        display: "flex",
+        justifyContent: "flex-end",
+        marginTop: "20px",
+        marginLeft: "310px",
+        marginRight: "280px",
+        color: "black",
+      }}
+      >
             <div>
+            <h1>Inventario</h1>
             <IconButton 
-                    color="primary"
+                    style={style2}
                     className="button muted-button"
                     fontsize="large"
                     onClick={
@@ -141,12 +158,12 @@ const ApartInventario = () => {
                     }
                     aria-label="create"
                 >
-                    <AddCircleIcon fontSize="large" 
+                    <AddCircleOutlineOutlinedIcon style={style2}
                 />
                 </IconButton>
             {/* <button className="btn btn-success" onClick={()=>abrirCerrarModalInsertar()}>Insertar</button> */}
             <br />
-            <table className="table table-striped">
+            <table>
             <thead>
                 <tr>
                 <th>ID</th>
@@ -166,10 +183,10 @@ const ApartInventario = () => {
                     <td>{inventario.id}</td>
                     <td>{inventario.producto}</td>
                     <td>{inventario.codigo}</td>
-                    <td>{inventario.precioA}</td>
-                    <td>{inventario.precioB}</td>
-                    <td>{inventario.precioC}</td>
-                    <td>{inventario.costo}</td>
+                    <td>${inventario.precioA}</td>
+                    <td>${inventario.precioB}</td>
+                    <td>${inventario.precioC}</td>
+                    <td>${inventario.costo}</td>
                     <td>{inventario.cantidad}</td>
                 <td>
 
@@ -231,7 +248,7 @@ const ApartInventario = () => {
                 </div>
             </ModalBody>
             <ModalFooter>
-                <button className="btn btn-primary" onClick={()=>peticionPost()}>Insertar</button>{"   "}
+                <button style={{backgroundColor: '#203769', color: '#ffffff'}} className="btn" onClick={()=>peticionPost()}>Insertar</button>{"   "}
                 <button className="btn btn-danger" onClick={()=>abrirCerrarModalInsertar()}>Cancelar</button>
             </ModalFooter>
             </Modal>
@@ -260,7 +277,7 @@ const ApartInventario = () => {
                 </div>
             </ModalBody>
             <ModalFooter>
-                <button className="btn btn-primary" onClick={()=>peticionPut()}>Editar</button>{"   "}
+                <button style={{backgroundColor: '#203769', color: '#ffffff'}} className="btn" onClick={()=>peticionPut()}>Editar</button>{"   "}
                 <button className="btn btn-danger" onClick={()=>abrirCerrarModalEditar()}>Cancelar</button>
             </ModalFooter>
             </Modal>
@@ -285,7 +302,6 @@ const ApartInventario = () => {
             </Modal>
             </div>
       </div>
-    </div>
   );
 }
 

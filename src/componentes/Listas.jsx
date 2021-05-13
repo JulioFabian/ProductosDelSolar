@@ -12,13 +12,14 @@ import AllInboxIcon from '@material-ui/icons/AllInbox';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import { Link } from 'react-router-dom';
 import Contenedor from './Contenedor';
+import './Listas.css'
 
 const Listas = (props) => {
 
     
 
     return (
-        <div>
+        <div style={{backgroundColor: '#ecfcfa',}}>
             <List components='nav'>
                 <Link to="/">
                     <ListItem button >

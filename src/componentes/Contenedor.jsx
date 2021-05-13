@@ -19,16 +19,18 @@ import ApartClient from './clientes/ApartClient';
 import ApartSupplier from './proveedores/ApartSupplier';
 import Portada from './inicio/Portada';
 import Logo1 from './imagenes/Logo1.jpg';
+import './Listas.css';
 
 const estilos = makeStyles(theme => ({
     root: {
-        display: 'flex'
+        display: 'flex',
+        backgroundColor: "#ffffff",
     },
     toolbar: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
-        backgroundColor: theme.palette.background.default,
-        padding: theme.spacing(2),
+        backgroundColor: "#ffffff",
+        padding: theme.spacing(2.5)
     },
 }));
 
@@ -42,8 +44,8 @@ const Contenedor = ( {usuario} ) => {
     }
 
     return (
-        <Router>
-        <div className={classes.root}>
+        <Router >
+        <div  className={classes.root}>
             <Navbar accionAbrir={accionAbrir} usuario={usuario}/>
             <Hidden smDown>
                 <Cajon 
