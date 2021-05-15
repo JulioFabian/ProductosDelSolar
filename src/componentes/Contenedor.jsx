@@ -1,26 +1,24 @@
-import React, { useEffect } from 'react'
+import React from 'react';
 
 import {
     BrowserRouter as Router,
-    Switch,
     Route,
-    Link
   } from "react-router-dom";
 
 import {
     Hidden,
     makeStyles
-} from '@material-ui/core'
+} from '@material-ui/core';
 
-import Navbar from './Navbar'
-import Cajon from './Cajon'
+import Navbar from './Navbar';
+import Cajon from './Cajon';
 import ApartVentas from './ventas/ApartVentas';
 import ApartInventario from './inventario/ApartInventario';
 import ApartClient from './clientes/ApartClient';
 import ApartSupplier from './proveedores/ApartSupplier';
 import Portada from './inicio/Portada';
-import Logo1 from './imagenes/Logo1.jpg';
 import './Listas.css';
+import ApartCompras from './compras/ApartCompras';
 
 const estilos = makeStyles(theme => ({
     root: {
@@ -91,6 +89,12 @@ const Contenedor = ( {usuario} ) => {
                 <div className={classes.content}>
                     <div className={classes.toolbar}></div>
                         <ApartSupplier />
+                    </div>
+                </Route>
+                <Route path="/Compras" exact>
+                <div className={classes.content}>
+                    <div className={classes.toolbar}></div>
+                        <ApartCompras />
                     </div>
                 </Route>
             </switch>

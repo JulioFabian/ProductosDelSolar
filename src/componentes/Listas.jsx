@@ -8,10 +8,11 @@ import {
 } from '@material-ui/core'
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import HomeIcon from '@material-ui/icons/Home';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import AllInboxIcon from '@material-ui/icons/AllInbox';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
-import Contenedor from './Contenedor';
 import './Listas.css'
 
 const Listas = (props) => {
@@ -32,7 +33,7 @@ const Listas = (props) => {
                 <Link to="/Ventas">
                     <ListItem button>
                         <ListItemIcon >
-                            <AllInboxIcon/>
+                            <AttachMoneyIcon/>
                         </ListItemIcon>
                         <ListItemText primary='VENTAS'/>
                     </ListItem>
@@ -61,8 +62,15 @@ const Listas = (props) => {
                     <ListItemText primary='PROVEEDORES'/>
                 </ListItem>
                 </Link>
+                <Link to="/Compras">
+                <ListItem button>
+                    <ListItemIcon>
+                        <ShoppingCartIcon />
+                    </ListItemIcon>
+                    <ListItemText primary='COMPRAS'/>
+                </ListItem>
+                </Link>
                 <Divider />
-
             </List>
         </div>
     )

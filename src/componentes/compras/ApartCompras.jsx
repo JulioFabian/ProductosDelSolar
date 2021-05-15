@@ -5,50 +5,49 @@ import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
-import './Ventas.css'; 
+import './Compras.css'; 
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 // import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 // import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import DoneIcon from '@material-ui/icons/Done';
 
-const ApartVentas = () => {
-  const baseUrl="http://localhost/apiProductosDelSolar/indexVent.php";
-  const baseUrlClient="http://localhost/apiProductosDelSolar/indexClientes.php";
+const ApartCompras = () => {
+  const baseUrl="http://localhost/apiProductosDelSolar/indexCompras.php";
+  const baseUrlProveedor="http://localhost/apiProductosDelSolar/indexProv.php";
   const baseUrlInv="http://localhost/apiProductosDelSolar/indexInv.php";
-  const [clientes, setClientes]=useState([]);
+  const [proveedores, setProveedores]=useState([]);
   const [inventario, setInventario]=useState([]);
   const [data, setData]=useState([]);
   const [modalInsertar, setModalInsertar]= useState(false);
   const [modalEditar, setModalEditar]= useState(false);
   const [modalEliminar, setModalEliminar]= useState(false);
-  const [modalEntregado, setModalEntregado]= useState(false);
-  const [ventaSeleccionado, setVentaSeleccionado]=useState({
+//   const [modalEntregado, setModalEntregado]= useState(false);
+  const [compraSeleccionada, setCompraSeleccionada]=useState({
     id: '',
-    id_cliente: '',
+    id_proveedor: '',
     id_producto: '',
     cantidad: '',
-    fecha_de_entrega: '',
-    hora_de_entrega: '',
+    fecha_de_compra: '',
   });
 
   const handleChangeSelect=e=>{
     const options = e.target;
     const {name}=e.target;
     const value = options[options.selectedIndex].value;
-    setVentaSeleccionado((prevState)=>({
+    setCompraSeleccionada((prevState)=>({
       ...prevState,
       [name]: value
     }))
-    console.log(ventaSeleccionado);
+    console.log(compraSeleccionada);
   }
 
   const handleChange=e=>{
     const {name, value}=e.target;
-    setVentaSeleccionado((prevState)=>({
+    setCompraSeleccionada((prevState)=>({
       ...prevState,
       [name]: value
     }))
-    console.log(ventaSeleccionado);
+    console.log(compraSeleccionada);
   }
 
   const abrirCerrarModalInsertar=()=>{
@@ -63,14 +62,14 @@ const ApartVentas = () => {
     setModalEliminar(!modalEliminar);
   }
 
-  const abrirCerrarModalEntregado=()=>{
-    setModalEntregado(!modalEntregado);
-  }
+//   const abrirCerrarModalEntregado=()=>{
+//     setModalEntregado(!modalEntregado);
+//   }
 
-  const peticionGetClients=async()=>{
-    await axios.get(baseUrlClient)
+  const peticionGetProveedor=async()=>{
+    await axios.get(baseUrlProveedor)
     .then(response=>{
-      setClientes(response.data);
+      setProveedores(response.data);
     }).catch(error=>{
       console.log(error);
     })
@@ -95,14 +94,13 @@ const ApartVentas = () => {
   }
 
   const peticionPost=async()=>{
-    console.log(ventaSeleccionado);
+    console.log(compraSeleccionada);
     var f = new FormData();
-    f.append("cantidad", ventaSeleccionado.cantidad);
-    f.append("id_producto", ventaSeleccionado.id_producto);
-    f.append("id_cliente", ventaSeleccionado.id_cliente);
-    // f.append("fecha_de_pedido", ventaSeleccionado.fecha_de_pedido);
-    f.append("fecha_de_entrega", ventaSeleccionado.fecha_de_entrega);
-    f.append("hora_de_entrega", ventaSeleccionado.hora_de_entrega);
+    f.append("cantidad", compraSeleccionada.cantidad);
+    f.append("id_producto", compraSeleccionada.id_producto);
+    f.append("id_cliente", compraSeleccionada.id_cliente);
+    // f.append("fecha_de_compra", compraSeleccionada.fecha_de_compra);
+    f.append("fecha_de_compra", compraSeleccionada.fecha_de_compra);
     f.append("METHOD", "POST");
     await axios.post(baseUrl, f)
     .then(response=>{
@@ -116,19 +114,18 @@ const ApartVentas = () => {
 
   const peticionPut=async()=>{
     var f = new FormData();
-    f.append("id_producto", ventaSeleccionado.id_producto);
-    f.append("id_cliente", ventaSeleccionado.id_cliente);
-    f.append("cantidad", ventaSeleccionado.cantidad);
-    // f.append("fecha_de_pedido", ventaSeleccionado.fecha_de_pedido);
-    f.append("fecha_de_entrega", ventaSeleccionado.fecha_de_entrega);
-    f.append("hora_de_entrega", ventaSeleccionado.hora_de_entrega);
+    f.append("id_producto", compraSeleccionada.id_producto);
+    f.append("id_cliente", compraSeleccionada.id_cliente);
+    f.append("cantidad", compraSeleccionada.cantidad);
+    // f.append("fecha_de_compra", compraSeleccionada.fecha_de_compra);
+    f.append("fecha_de_compra", compraSeleccionada.fecha_de_compra);
     f.append("METHOD", "PUT");
-    await axios.post(baseUrl, f, {params: {id: ventaSeleccionado.id}})
+    await axios.post(baseUrl, f, {params: {id: compraSeleccionada.id}})
     .then(response=>{
       var dataNueva= data;
-      dataNueva.map(venta=>{
-        if(venta.id===ventaSeleccionado.id){
-          Object.assign(venta, response.data);
+      dataNueva.map(compra=>{
+        if(compra.id===compraSeleccionada.id){
+          Object.assign(compra, response.data);
         }
       });
       setData(dataNueva);
@@ -139,58 +136,50 @@ const ApartVentas = () => {
     peticionGet();
   }
 
-  // const peticionEntregado=async()=>{
-  //   console.log(ventaSeleccionado);
-  //   var f = new FormData();
-  //   f.append("METHOD", "PUT");
-  //   await axios.post(baseUrl, f, {params: {id: ventaSeleccionado.id, entregado: '1'}})
-  //     // abrirCerrarModalEditar();
-  //   peticionGet();
-  // }
-
-  const peticionEntregado=async()=>{
-    var f = new FormData();
-    f.append("METHOD", "PUT");
-    await axios.post(baseUrl, f, {params: {id: ventaSeleccionado.id, entregado: 1}})
-    .then(response=>{
-      setData(data.filter(venta=>venta.id!==ventaSeleccionado.id));
-      abrirCerrarModalEntregado();
-    }).catch(error=>{
-      console.log(error);
-    })
-  }
+//   const peticionEntregado=async()=>{
+//     var f = new FormData();
+//     f.append("METHOD", "PUT");
+//     await axios.post(baseUrl, f, {params: {id: compraSeleccionada.id, entregado: 1}})
+//     .then(response=>{
+//       setData(data.filter(compra=>compra.id!==compraSeleccionada.id));
+//       abrirCerrarModalEntregado();
+//     }).catch(error=>{
+//       console.log(error);
+//     })
+//   }
 
   const peticionDelete=async()=>{
     var f = new FormData();
     f.append("METHOD", "DELETE");
-    await axios.post(baseUrl, f, {params: {id: ventaSeleccionado.id}})
+    await axios.post(baseUrl, f, {params: {id: compraSeleccionada.id}})
     .then(response=>{
-      setData(data.filter(venta=>venta.id!==ventaSeleccionado.id));
+      setData(data.filter(compra=>compra.id!==compraSeleccionada.id));
       abrirCerrarModalEliminar();
     }).catch(error=>{
       console.log(error);
     })
   }
 
-  const seleccionarVenta=(venta, caso)=>{
-    setVentaSeleccionado(venta);
+  const seleccionarCompra=(compra, caso)=>{
+    setCompraSeleccionada(compra);
 
     if(caso==="Editar"){
       abrirCerrarModalEditar()
     }else{
       if(caso === "Eliminar"){
         abrirCerrarModalEliminar()
-      }else{
-        if(caso === "Entregado"){
-          abrirCerrarModalEntregado()
-        }
       }
+    //   else{
+    //     if(caso === "Entregado"){
+    //       abrirCerrarModalEntregado()
+    //     }
+    //   }
     }
   }
 
   useEffect(()=>{
     peticionGet();
-    peticionGetClients();
+    peticionGetProveedor();
     peticionGetInventario();
   },[])
 
@@ -210,8 +199,8 @@ const ApartVentas = () => {
     }}>
         <div>
             <div>
-            <h1>Ventas</h1>
-            <IconButton 
+            <h1>Compras</h1>
+            {/* <IconButton 
                     style={style2}
                     color="primary"
                     className="button muted-button"
@@ -223,68 +212,51 @@ const ApartVentas = () => {
                 >
                     <AddCircleOutlineOutlinedIcon style={style2}
                 />
-                </IconButton>
+                </IconButton> */}
             {/* <button className="btn btn-success" onClick={()=>abrirCerrarModalInsertar()}>Insertar</button> */}
             <br />
             
             <div className="flex-large">
 
-            <table className="Client-center">
+            <table className="Compras-center">
             <thead>
                 <tr>
                   <th></th>
-                <th>Nombre</th>
-                <th>Dirección</th>
+                <th>Proveedor</th>
                 <th>Producto</th>
                 <th>Cantidad</th>
-                <th>Fecha de pedido</th>
-                <th>Fecha de entrega</th>
-                <th>Hora de entrega</th>
+                <th>Fecha de Compra</th>
                 <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                {data.map(venta=>(
-                <tr key={venta.id}>
+                {data.map(compra=>(
+                <tr key={compra.id}>
                   <td>
-                  <IconButton 
-                    color="inherit"
-                    className="button muted-button"
-                    onClick = {
-                        ()=>seleccionarVenta(venta, "Entregado")
-                    }
-                    aria-label="delete"
-                >
-                    <DoneIcon fontSize="medium" 
-                />
-                </IconButton>
                   </td>
-                    <td>{venta.nombre + " " + venta.apellido}</td>
-                    <td>{venta.direccion}</td>
-                    <td>{venta.producto}</td>
-                    <td>{venta.cantidad}</td>
-                    <td>{venta.fecha_de_pedido}</td>
-                    <td>{venta.fecha_de_entrega}</td>
-                    <td>{venta.hora_de_entrega}</td>
+                    <td>{compra.id_proveedor}</td>
+                    <td>{compra.id_producto}</td>
+                    <td>{compra.cantidad}</td>
+                    <td>{compra.fecha_de_compra}</td>
                 <td>
 
-                <IconButton 
+                {/* <IconButton 
                     color="inherit"
                     className="button muted-button"
                     fontsize="small"
                     onClick={
-                        ()=>seleccionarVenta(venta, "Editar")
+                        ()=>seleccionarCompra(compra, "Editar")
                     }
                     aria-label="create"
                 >
                     <CreateIcon fontSize="small" 
                 />
-                </IconButton>
+                </IconButton> */}
                 <IconButton 
                     color="inherit"
                     className="button muted-button"
                     onClick = {
-                        ()=>seleccionarVenta(venta, "Eliminar")
+                        ()=>seleccionarCompra(compra, "Eliminar")
                     }
                     aria-label="delete"
                 >
@@ -307,15 +279,15 @@ const ApartVentas = () => {
 
             <Modal isOpen={modalInsertar}>
                 <br />
-            <ModalHeader>Insertar Venta</ModalHeader>
+            <ModalHeader>Insertar Compra</ModalHeader>
               <ModalBody>
                   <div className="form-group">
-                    <label>Cliente: </label>
-                    <select type="select" name="id_cliente" id="id_cliente" onChange={handleChangeSelect}>
-                    <option selected disabled hidden>selecciona un cliente</option>
-                          {clientes.map(cliente => {
+                    <label>Proveedor: </label>
+                    <select type="select" name="id_proveedor" id="id_proveedor" onChange={handleChangeSelect}>
+                    <option selected disabled hidden>selecciona un proveedor</option>
+                          {proveedores.map(proveedor => {
                             return (
-                      <option value={cliente.id}>{cliente.nombre + " " + cliente.apellido}</option>
+                      <option value={proveedor.id}>{proveedor.nombre + " " + proveedor.apellido}</option>
                             );
                           })}
                     </select>
@@ -331,9 +303,9 @@ const ApartVentas = () => {
                     <label>Cantidad: </label>
                     <input type="number" className="form-control" name="cantidad" onChange={handleChange}/>
                     {/* <label>Fecha de pedido: </label>
-                    <input type="text" className="form-control" name="fecha_de_pedido" onChange={handleChange}/> */}
+                    <input type="text" className="form-control" name="fecha_de_compra" onChange={handleChange}/> */}
                     <label>Fecha de entrega: </label>
-                    <input type="date" className="form-control" name="fecha_de_entrega" onChange={handleChange}/>
+                    <input type="date" className="form-control" name="fecha_de_compra" onChange={handleChange}/>
                     <label>Hora de entrega: </label>
                     <input type="time" className="form-control" name="hora_de_entrega" onChange={handleChange}/>
                 </div>
@@ -347,7 +319,7 @@ const ApartVentas = () => {
 
             <Modal isOpen={modalEditar}>
             <br />
-            <ModalHeader>Editar Venta</ModalHeader>
+            <ModalHeader>Editar Compra</ModalHeader>
             <ModalBody>
                 <div className="form-group">
 
@@ -355,10 +327,10 @@ const ApartVentas = () => {
 
                 <label>Cliente: </label>
                     <select disabled type="select" name="id_cliente" id="id_cliente" onChange={handleChangeSelect}>
-                          {clientes.map(cliente => {
-                            if(cliente.id === ventaSeleccionado.id_cliente){
+                          {proveedores.map(proveedor => {
+                            if(proveedor.id === compraSeleccionada.id_cliente){
                               return (
-                                <option selected value={cliente.id}>{cliente.nombre + " " + cliente.apellido}</option>
+                                <option selected value={proveedor.id}>{proveedor.nombre + " " + proveedor.apellido}</option>
                               );
                             }
                           })}
@@ -367,25 +339,20 @@ const ApartVentas = () => {
                     <label>Producto: </label>
                     <select disabled type="select" name="id_producto" id="id_producto" onChange={handleChangeSelect}>
                           {inventario.map(producto => {
-                              if(producto.id === ventaSeleccionado.id_producto){
+                              if(producto.id === compraSeleccionada.id_producto){
                                 return (
                                   <option selected value={producto.id}>{producto.producto}</option>
                                 );
                               }
                           })}
                     </select>
-
-                {/* <label>Cliente: </label>
-                <input disabled type="text" className="form-control" name="id_cliente" onChange={handleChange} value={ventaSeleccionado && ventaSeleccionado.id_cliente}/>
-                <label>Producto: </label>
-                <input disabled type="text" className="form-control" name="id_producto" onChange={handleChange} value={ventaSeleccionado && ventaSeleccionado.id_producto}/> */}
                 
                 <label>Cantidad: </label>
-                <input type="number" className="form-control" name="cantidad" onChange={handleChange} value={ventaSeleccionado && ventaSeleccionado.cantidad}/>
+                <input type="number" className="form-control" name="cantidad" onChange={handleChange} value={compraSeleccionada && compraSeleccionada.cantidad}/>
                 <label>Fecha de entrega: </label>
-                <input type="date" className="form-control" name="fecha_de_entrega" onChange={handleChange} value={ventaSeleccionado && ventaSeleccionado.fecha_de_entrega}/>
+                <input type="date" className="form-control" name="fecha_de_compra" onChange={handleChange} value={compraSeleccionada && compraSeleccionada.fecha_de_compra}/>
                 <label>Hora de entrega: </label>
-                <input type="time" className="form-control" name="hora_de_entrega" onChange={handleChange} value={ventaSeleccionado && ventaSeleccionado.hora_de_entrega}/>
+                <input type="time" className="form-control" name="hora_de_entrega" onChange={handleChange} value={compraSeleccionada && compraSeleccionada.hora_de_entrega}/>
                 </div>
             </ModalBody>
             <ModalFooter>
@@ -398,7 +365,7 @@ const ApartVentas = () => {
                 <ModalBody>
                 <br />
                 <br />
-                ¿Estás seguro que deseas eliminar la Venta de {ventaSeleccionado && ventaSeleccionado.nombre}?
+                ¿Estás seguro que deseas eliminar la Compra de {compraSeleccionada && compraSeleccionada.nombre}?
                 </ModalBody>
                 <ModalFooter>
                 <button className="btn btn-danger" onClick={()=>peticionDelete()}>
@@ -413,11 +380,11 @@ const ApartVentas = () => {
                 </ModalFooter>
             </Modal>
 
-            <Modal isOpen={modalEntregado}>
+            {/* <Modal isOpen={modalEntregado}>
                 <ModalBody>
                 <br />
                 <br />
-                ¿Estás seguro que se realizó la entrega de {ventaSeleccionado && ventaSeleccionado.nombre}?
+                ¿Estás seguro que se realizó la entrega de {compraSeleccionada && compraSeleccionada.nombre}?
                 </ModalBody>
                 <ModalFooter>
                 <button className="btn btn-danger" onClick={()=>peticionEntregado()}>
@@ -430,25 +397,11 @@ const ApartVentas = () => {
                     No
                 </button>
                 </ModalFooter>
-            </Modal>
+            </Modal> */}
             </div>
       </div>
     </div>
   );
 }
 
-export default ApartVentas;
-
-// import React, {useState, useEffect} from 'react';
-
-// const ApartVentas = () => {
-//     return(
-//         <div style={{alignItems: "center"}}>
-//             <h1>
-//                 Hola
-//             </h1>
-//         </div>
-//     );
-// }
-
-// export default ApartVentas;
+export default ApartCompras;

@@ -10,7 +10,7 @@ import { Grid } from '@material-ui/core';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 
 const ApartClient = () => {
-  const baseUrl="http://localhost/apiInventario/indexComp.php";
+  const baseUrl="http://localhost/apiProductosDelSolar/indexClientes.php";
   const [data, setData]=useState([]);
   const [modalInsertar, setModalInsertar]= useState(false);
   const [modalEditar, setModalEditar]= useState(false);

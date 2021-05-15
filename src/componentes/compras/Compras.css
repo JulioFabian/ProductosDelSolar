@@ -1,0 +1,11 @@
+.Compras-top {
+    margin-top: 500px;
+}
+
+.Compras-center{
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }

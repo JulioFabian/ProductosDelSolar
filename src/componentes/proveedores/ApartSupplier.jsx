@@ -9,7 +9,7 @@ import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOut
 import './Proveedores.css'
 
 const ApartSupplier = () => {
-  const baseUrl="http://localhost/apiInventario/indexProv.php";
+  const baseUrl="http://localhost/apiProductosDelSolar/indexProv.php";
   const [data, setData]=useState([]);
   const [modalInsertar, setModalInsertar]= useState(false);
   const [modalEditar, setModalEditar]= useState(false);

@@ -9,7 +9,7 @@ import './Inventario.css';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 
 const ApartInventario = () => {
-  const baseUrl="http://localhost/apiInventario/index.php";
+  const baseUrl="http://localhost/apiProductosDelSolar/indexInv.php";
   const [data, setData]=useState([]);
   const [modalInsertar, setModalInsertar]= useState(false);
   const [modalEditar, setModalEditar]= useState(false);
