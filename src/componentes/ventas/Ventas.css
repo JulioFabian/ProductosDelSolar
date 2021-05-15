@@ -1,12 +1,11 @@
-.Portada-carrete{
-    margin-top: 50px;
-    margin-bottom: 50px;
+.Ventas-top {
+    margin-top: 500px;
 }
-.Portada-center{
+
+.Ventas-center{
     text-align: center;
     display: block;
     justify-content: center;
     align-items: center;
     margin: auto;
-    width: 35%;
   }

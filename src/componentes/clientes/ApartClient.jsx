@@ -132,9 +132,8 @@ const ApartClient = () => {
       alignItems: "center",
       textAlign: "center",
       display: "flex",
-      marginTop: "20px",
-      marginLeft: "230px",
-      marginRight: "190px",
+      // marginTop: "20px",
+      marginLeft: "300px",
       color: "black",
     }}>
         <div>

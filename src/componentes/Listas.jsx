@@ -19,7 +19,7 @@ const Listas = (props) => {
     
 
     return (
-        <div style={{backgroundColor: '#ecfcfa',}}>
+        <div style={{backgroundColor: '#f5fcfb',}}>
             <List components='nav'>
                 <Link to="/">
                     <ListItem button >
@@ -27,6 +27,14 @@ const Listas = (props) => {
                             <HomeIcon />
                         </ListItemIcon>
                         <ListItemText primary='INICIO'/>
+                    </ListItem>
+                </Link>
+                <Link to="/Ventas">
+                    <ListItem button>
+                        <ListItemIcon >
+                            <AllInboxIcon/>
+                        </ListItemIcon>
+                        <ListItemText primary='VENTAS'/>
                     </ListItem>
                 </Link>
                 <Link to="/Inventario">

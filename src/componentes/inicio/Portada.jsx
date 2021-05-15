@@ -10,19 +10,24 @@ import { Link } from 'react-router-dom';
 
 const images = [
     {
+      url: 'https://smartupmarketing.com/wp-content/uploads/2016/07/VentasPYME.jpg',
+      title: 'Ventas',
+      width: '25%',
+    },
+    {
       url: 'https://dnb2eg0emsxdz.cloudfront.net/cdn/13/images/curso-online-de-montacargas_l_primaria_1_1580501245.jpg',
       title: 'Inventario',
-      width: '33%',
+      width: '25%',
     },
     {
       url: 'https://cdn.aarp.net/content/dam/aarp/health/healthy-living/2018/10/1140-choose-best-yogur-esp.jpg',
       title: 'Clientes',
-      width: '33%',
+      width: '25%',
     },
     {
       url: 'https://image.freepik.com/foto-gratis/gente-negocios-dandose-mano-cerrando-trato-exitoso_35666-159.jpg',
       title: 'Proveedores',
-      width: '33%',
+      width: '25%',
     },
   ];
   

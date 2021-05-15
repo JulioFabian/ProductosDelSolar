@@ -123,9 +123,8 @@ const ApartSupplier = () => {
       alignItems: "center",
       textAlign: "center",
       display: "flex",
-      marginTop: "20px",
+      // marginTop: "20px",
       marginLeft: "410px",
-      marginRight: "360px",
       color: "black",
     }}>
         <div className="felx-large">

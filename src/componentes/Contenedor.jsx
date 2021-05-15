@@ -14,7 +14,8 @@ import {
 
 import Navbar from './Navbar'
 import Cajon from './Cajon'
-import ApartInventario from './inventario/ApartInventario'
+import ApartVentas from './ventas/ApartVentas';
+import ApartInventario from './inventario/ApartInventario';
 import ApartClient from './clientes/ApartClient';
 import ApartSupplier from './proveedores/ApartSupplier';
 import Portada from './inicio/Portada';
@@ -66,6 +67,12 @@ const Contenedor = ( {usuario} ) => {
                 <div className={classes.content}>
                     <div className={classes.toolbar}></div>
                             <Portada />
+                    </div>
+                </Route>
+                <Route path="/Ventas" exact>
+                <div className={classes.content}>
+                    <div className={classes.toolbar}></div>
+                            <ApartVentas />
                     </div>
                 </Route>
                 <Route path="/Inventario" exact>

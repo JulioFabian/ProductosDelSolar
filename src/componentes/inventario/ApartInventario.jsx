@@ -18,9 +18,9 @@ const ApartInventario = () => {
     id: '',
     producto: '',
     codigo: '',
-    precioA: '',
-    precioB: '',
-    precioC: '',
+    precioa: '',
+    preciob: '',
+    precioc: '',
     costo: '',
     cantidad: ''
   });
@@ -59,9 +59,9 @@ const ApartInventario = () => {
     var f = new FormData();
     f.append("producto", inventarioSeleccionado.producto);
     f.append("codigo", inventarioSeleccionado.codigo);
-    f.append("precioA", inventarioSeleccionado.precioA);
-    f.append("precioB", inventarioSeleccionado.precioB);
-    f.append("precioC", inventarioSeleccionado.precioC);
+    f.append("precioa", inventarioSeleccionado.precioa);
+    f.append("preciob", inventarioSeleccionado.preciob);
+    f.append("precioc", inventarioSeleccionado.precioc);
     f.append("costo", inventarioSeleccionado.costo);
     f.append("cantidad", inventarioSeleccionado.cantidad);
     f.append("METHOD", "POST");
@@ -78,9 +78,9 @@ const ApartInventario = () => {
     var f = new FormData();
     f.append("producto", inventarioSeleccionado.producto);
     f.append("codigo", inventarioSeleccionado.codigo);
-    f.append("precioA", inventarioSeleccionado.precioA);
-    f.append("precioB", inventarioSeleccionado.precioB);
-    f.append("precioC", inventarioSeleccionado.precioC);
+    f.append("precioa", inventarioSeleccionado.precioa);
+    f.append("preciob", inventarioSeleccionado.preciob);
+    f.append("precioc", inventarioSeleccionado.precioc);
     f.append("costo", inventarioSeleccionado.costo);
     f.append("cantidad", inventarioSeleccionado.cantidad);
     f.append("METHOD", "PUT");
@@ -91,9 +91,9 @@ const ApartInventario = () => {
         if(inventario.id===inventarioSeleccionado.id){
           inventario.producto=inventarioSeleccionado.producto;
           inventario.codigo=inventarioSeleccionado.codigo;
-          inventario.precioA=inventarioSeleccionado.precioA;
-          inventario.precioB=inventarioSeleccionado.precioB;
-          inventario.precioC=inventarioSeleccionado.precioC;
+          inventario.precioa=inventarioSeleccionado.precioa;
+          inventario.preciob=inventarioSeleccionado.preciob;
+          inventario.precioc=inventarioSeleccionado.precioc;
           inventario.costo=inventarioSeleccionado.costo;
           inventario.cantidad=inventarioSeleccionado.cantidad;
         }
@@ -110,6 +110,7 @@ const ApartInventario = () => {
     f.append("METHOD", "DELETE");
     await axios.post(baseUrl, f, {params: {id: inventarioSeleccionado.id}})
     .then(response=>{
+      console.log(response.status);
       setData(data.filter(inventario=>inventario.id!==inventarioSeleccionado.id));
       abrirCerrarModalEliminar();
     }).catch(error=>{
@@ -136,16 +137,15 @@ const ApartInventario = () => {
 
   return (
     <div
-      style={{
-        alignItems: "center",
-        textAlign: "center",
-        display: "flex",
-        justifyContent: "flex-end",
-        marginTop: "20px",
-        marginLeft: "310px",
-        marginRight: "280px",
-        color: "black",
-      }}
+      className= "Inventario-center"
+      // style={{
+      //   alignItems: "center",
+      //   textAlign: "center",
+      //   display: "flex",
+      //   justifyContent: "flex-end",
+      //   marginTop: "20px",
+      //   marginLeft: "310px",
+      // }}
       >
             <div>
             <h1>Inventario</h1>
@@ -169,9 +169,9 @@ const ApartInventario = () => {
                 <th>ID</th>
                 <th>Producto</th>
                 <th>Código</th>
-                <th>PrecioA</th>
-                <th>PrecioB</th>
-                <th>PrecioC</th>
+                <th>precioA</th>
+                <th>precioB</th>
+                <th>precioC</th>
                 <th>Costo</th>
                 <th>Cantidad</th>
                 <th>Acciones</th>
@@ -183,9 +183,9 @@ const ApartInventario = () => {
                     <td>{inventario.id}</td>
                     <td>{inventario.producto}</td>
                     <td>{inventario.codigo}</td>
-                    <td>${inventario.precioA}</td>
-                    <td>${inventario.precioB}</td>
-                    <td>${inventario.precioC}</td>
+                    <td>${inventario.precioa}</td>
+                    <td>${inventario.preciob}</td>
+                    <td>${inventario.precioc}</td>
                     <td>${inventario.costo}</td>
                     <td>{inventario.cantidad}</td>
                 <td>
@@ -235,12 +235,12 @@ const ApartInventario = () => {
                 <input type="text" className="form-control" name="producto" onChange={handleChange}/>
                 <label>Código: </label>
                 <input type="text" className="form-control" name="codigo" onChange={handleChange}/>
-                <label>PrecioA: </label>
-                <input type="text" className="form-control" name="precioA" onChange={handleChange}/>
-                <label>PrecioB: </label>
-                <input type="text" className="form-control" name="precioB" onChange={handleChange}/>
-                <label>PrecioC: </label>
-                <input type="text" className="form-control" name="precioC" onChange={handleChange}/>
+                <label>precioA: </label>
+                <input type="text" className="form-control" name="precioa" onChange={handleChange}/>
+                <label>precioB: </label>
+                <input type="text" className="form-control" name="preciob" onChange={handleChange}/>
+                <label>precioC: </label>
+                <input type="text" className="form-control" name="precioc" onChange={handleChange}/>
                 <label>Costo: </label>
                 <input type="text" className="form-control" name="costo" onChange={handleChange}/>
                 <label>Cantidad: </label>
@@ -264,12 +264,12 @@ const ApartInventario = () => {
                 <input type="text" className="form-control" name="producto" onChange={handleChange} value={inventarioSeleccionado && inventarioSeleccionado.producto}/>
                 <label>Código: </label>
                 <input type="text" className="form-control" name="codigo" onChange={handleChange} value={inventarioSeleccionado && inventarioSeleccionado.codigo}/>
-                <label>PrecioA: </label>
-                <input type="text" className="form-control" name="precioA" onChange={handleChange} value={inventarioSeleccionado && inventarioSeleccionado.precioA}/>
-                <label>PrecioB: </label>
-                <input type="text" className="form-control" name="precioB" onChange={handleChange} value={inventarioSeleccionado && inventarioSeleccionado.precioB}/>
-                <label>PrecioC: </label>
-                <input type="text" className="form-control" name="precioC" onChange={handleChange} value={inventarioSeleccionado && inventarioSeleccionado.precioC}/>
+                <label>precioA: </label>
+                <input type="text" className="form-control" name="precioa" onChange={handleChange} value={inventarioSeleccionado && inventarioSeleccionado.precioa}/>
+                <label>precioB: </label>
+                <input type="text" className="form-control" name="preciob" onChange={handleChange} value={inventarioSeleccionado && inventarioSeleccionado.preciob}/>
+                <label>precioC: </label>
+                <input type="text" className="form-control" name="precioc" onChange={handleChange} value={inventarioSeleccionado && inventarioSeleccionado.precioc}/>
                 <label>Costo: </label>
                 <input type="text" className="form-control" name="costo" onChange={handleChange} value={inventarioSeleccionado && inventarioSeleccionado.costo}/>
                 <label>Cantidad: </label>
@@ -317,9 +317,9 @@ import EditProductForm from './EditProductForm'
 const ApartInventario = () => {
 
     const productsData = [
-        { id: uuidv4(), producto: 'Quesillo', codigo: '1f23', precioA: 4.5, precioB: 5.5, precioC: 6.5, costo: 3.5, cantidad: 10 },
-        { id: uuidv4(), producto: 'Cafe', codigo: '1f24', precioA: 7.5, precioB: 8.5, precioC: 9.5, costo: 6.5, cantidad: 15 },
-        { id: uuidv4(), producto: 'Queso', codigo: '1f25', precioA: 10.5, precioB: 11.5, precioC: 12.5, costo: 9.5, cantidad: 20 },
+        { id: uuidv4(), producto: 'Quesillo', codigo: '1f23', precioa: 4.5, preciob: 5.5, precioc: 6.5, costo: 3.5, cantidad: 10 },
+        { id: uuidv4(), producto: 'Cafe', codigo: '1f24', precioa: 7.5, preciob: 8.5, precioc: 9.5, costo: 6.5, cantidad: 15 },
+        { id: uuidv4(), producto: 'Queso', codigo: '1f25', precioa: 10.5, preciob: 11.5, precioc: 12.5, costo: 9.5, cantidad: 20 },
       ]
 
       //state
@@ -345,15 +345,15 @@ const ApartInventario = () => {
       const [editing, setEditing1] = useState(false)
 
       const [currentProduct, setCurrentProduct] = useState({
-        id: null, producto: '', codigo: '', precioA: '', precioB: '', precioC: '', costo: '', cantidad: ''
+        id: null, producto: '', codigo: '', precioa: '', preciob: '', precioc: '', costo: '', cantidad: ''
       });
 
       const editRow = (product) => {
         setEditing1(true);
           setCurrentProduct({
             id: product.id, producto: product.producto, 
-            codigo: product.codigo, precioA: product.precioA, 
-            precioB: product.precioB, precioC: product.precioC, 
+            codigo: product.codigo, precioa: product.precioa, 
+            preciob: product.preciob, precioc: product.precioc, 
             costo: product.costo, cantidad: product.cantidad
           })
       }
