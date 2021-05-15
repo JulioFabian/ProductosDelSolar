@@ -21,6 +21,7 @@ const ApartVentas = () => {
   const [modalInsertar, setModalInsertar]= useState(false);
   const [modalEditar, setModalEditar]= useState(false);
   const [modalEliminar, setModalEliminar]= useState(false);
+  const [modalEntregado, setModalEntregado]= useState(false);
   const [ventaSeleccionado, setVentaSeleccionado]=useState({
     id: '',
     id_cliente: '',
@@ -60,6 +61,10 @@ const ApartVentas = () => {
 
   const abrirCerrarModalEliminar=()=>{
     setModalEliminar(!modalEliminar);
+  }
+
+  const abrirCerrarModalEntregado=()=>{
+    setModalEntregado(!modalEntregado);
   }
 
   const peticionGetClients=async()=>{
@@ -106,6 +111,7 @@ const ApartVentas = () => {
     }).catch(error=>{
       console.log(error);
     })
+    peticionGet();
   }
 
   const peticionPut=async()=>{
@@ -130,6 +136,28 @@ const ApartVentas = () => {
     }).catch(error=>{
       console.log(error);
     })
+    peticionGet();
+  }
+
+  // const peticionEntregado=async()=>{
+  //   console.log(ventaSeleccionado);
+  //   var f = new FormData();
+  //   f.append("METHOD", "PUT");
+  //   await axios.post(baseUrl, f, {params: {id: ventaSeleccionado.id, entregado: '1'}})
+  //     // abrirCerrarModalEditar();
+  //   peticionGet();
+  // }
+
+  const peticionEntregado=async()=>{
+    var f = new FormData();
+    f.append("METHOD", "PUT");
+    await axios.post(baseUrl, f, {params: {id: ventaSeleccionado.id, entregado: 1}})
+    .then(response=>{
+      setData(data.filter(venta=>venta.id!==ventaSeleccionado.id));
+      abrirCerrarModalEntregado();
+    }).catch(error=>{
+      console.log(error);
+    })
   }
 
   const peticionDelete=async()=>{
@@ -147,9 +175,17 @@ const ApartVentas = () => {
   const seleccionarVenta=(venta, caso)=>{
     setVentaSeleccionado(venta);
 
-    (caso==="Editar")?
-    abrirCerrarModalEditar():
-    abrirCerrarModalEliminar()
+    if(caso==="Editar"){
+      abrirCerrarModalEditar()
+    }else{
+      if(caso === "Eliminar"){
+        abrirCerrarModalEliminar()
+      }else{
+        if(caso === "Entregado"){
+          abrirCerrarModalEntregado()
+        }
+      }
+    }
   }
 
   useEffect(()=>{
@@ -215,7 +251,7 @@ const ApartVentas = () => {
                     color="inherit"
                     className="button muted-button"
                     onClick = {
-                        ()=>seleccionarVenta(venta, "Eliminar")
+                        ()=>seleccionarVenta(venta, "Entregado")
                     }
                     aria-label="delete"
                 >
@@ -371,6 +407,25 @@ const ApartVentas = () => {
                 <button
                     className="btn btn-secondary"
                     onClick={()=>abrirCerrarModalEliminar()}
+                >
+                    No
+                </button>
+                </ModalFooter>
+            </Modal>
+
+            <Modal isOpen={modalEntregado}>
+                <ModalBody>
+                <br />
+                <br />
+                ¿Estás seguro que se realizó la entrega de {ventaSeleccionado && ventaSeleccionado.nombre}?
+                </ModalBody>
+                <ModalFooter>
+                <button className="btn btn-danger" onClick={()=>peticionEntregado()}>
+                    Sí
+                </button>
+                <button
+                    className="btn btn-secondary"
+                    onClick={()=>abrirCerrarModalEntregado()}
                 >
                     No
                 </button>
