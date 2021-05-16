@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Modal, ModalBody, ModalFooter, ModalHeader, DropdownItem, DropdownMenu, Dropdown} from 'reactstrap';
+import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -98,7 +98,6 @@ const ApartVentas = () => {
     f.append("cantidad", ventaSeleccionado.cantidad);
     f.append("id_producto", ventaSeleccionado.id_producto);
     f.append("id_cliente", ventaSeleccionado.id_cliente);
-    // f.append("fecha_de_pedido", ventaSeleccionado.fecha_de_pedido);
     f.append("fecha_de_entrega", ventaSeleccionado.fecha_de_entrega);
     f.append("hora_de_entrega", ventaSeleccionado.hora_de_entrega);
     f.append("METHOD", "POST");
@@ -117,7 +116,6 @@ const ApartVentas = () => {
     f.append("id_producto", ventaSeleccionado.id_producto);
     f.append("id_cliente", ventaSeleccionado.id_cliente);
     f.append("cantidad", ventaSeleccionado.cantidad);
-    // f.append("fecha_de_pedido", ventaSeleccionado.fecha_de_pedido);
     f.append("fecha_de_entrega", ventaSeleccionado.fecha_de_entrega);
     f.append("hora_de_entrega", ventaSeleccionado.hora_de_entrega);
     f.append("METHOD", "PUT");
@@ -136,15 +134,6 @@ const ApartVentas = () => {
     })
     peticionGet();
   }
-
-  // const peticionEntregado=async()=>{
-  //   console.log(ventaSeleccionado);
-  //   var f = new FormData();
-  //   f.append("METHOD", "PUT");
-  //   await axios.post(baseUrl, f, {params: {id: ventaSeleccionado.id, entregado: '1'}})
-  //     // abrirCerrarModalEditar();
-  //   peticionGet();
-  // }
 
   const peticionEntregado=async()=>{
     var f = new FormData();
@@ -222,7 +211,6 @@ const ApartVentas = () => {
                     <AddCircleOutlineOutlinedIcon style={style2}
                 />
                 </IconButton>
-            {/* <button className="btn btn-success" onClick={()=>abrirCerrarModalInsertar()}>Insertar</button> */}
             <br />
             
             <div className="flex-large">
@@ -289,9 +277,6 @@ const ApartVentas = () => {
                     <DeleteIcon fontSize="small" 
                 />
                 </IconButton>
-
-                {/* <button className="btn btn-primary" onClick={()=>seleccionarInventario(inventario, "Editar")}>Editar</button> {"  "}
-                <button className="btn btn-danger" onClick={()=>seleccionarInventario(inventario, "Eliminar")}>Eliminar</button> */}
                 </td>
                 </tr>
                 ))}
@@ -372,11 +357,6 @@ const ApartVentas = () => {
                               }
                           })}
                     </select>
-
-                {/* <label>Cliente: </label>
-                <input disabled type="text" className="form-control" name="id_cliente" onChange={handleChange} value={ventaSeleccionado && ventaSeleccionado.id_cliente}/>
-                <label>Producto: </label>
-                <input disabled type="text" className="form-control" name="id_producto" onChange={handleChange} value={ventaSeleccionado && ventaSeleccionado.id_producto}/> */}
                 
                 <label>Cantidad: </label>
                 <input type="number" className="form-control" name="cantidad" onChange={handleChange} value={ventaSeleccionado && ventaSeleccionado.cantidad}/>
@@ -436,17 +416,3 @@ const ApartVentas = () => {
 }
 
 export default ApartVentas;
-
-// import React, {useState, useEffect} from 'react';
-
-// const ApartVentas = () => {
-//     return(
-//         <div style={{alignItems: "center"}}>
-//             <h1>
-//                 Hola
-//             </h1>
-//         </div>
-//     );
-// }
-
-// export default ApartVentas;
