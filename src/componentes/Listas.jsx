@@ -17,13 +17,16 @@ import './Listas.css'
 
 const Listas = (props) => {
 
+    const pruebaAbrir = () =>{
+        console.log("click en prueba");
+    }
     
 
     return (
         <div style={{backgroundColor: '#f5fcfb',}}>
             <List components='nav'>
                 <Link to="/">
-                    <ListItem button >
+                    <ListItem button onClick={() => props.accionAbrir()}>
                         <ListItemIcon>
                             <HomeIcon />
                         </ListItemIcon>
@@ -31,7 +34,7 @@ const Listas = (props) => {
                     </ListItem>
                 </Link>
                 <Link to="/Ventas">
-                    <ListItem button>
+                    <ListItem button onClick={() => props.accionAbrir()}>
                         <ListItemIcon >
                             <AttachMoneyIcon/>
                         </ListItemIcon>
@@ -39,7 +42,7 @@ const Listas = (props) => {
                     </ListItem>
                 </Link>
                 <Link to="/Inventario">
-                    <ListItem button>
+                    <ListItem button onClick={() => props.accionAbrir()}>
                         <ListItemIcon >
                             <AllInboxIcon/>
                         </ListItemIcon>
@@ -47,7 +50,7 @@ const Listas = (props) => {
                     </ListItem>
                 </Link>
                 <Link to="/Clientes">
-                    <ListItem button>
+                    <ListItem button onClick={() => props.accionAbrir()}>
                         <ListItemIcon>
                             <AssignmentIndIcon />
                         </ListItemIcon>
@@ -55,7 +58,7 @@ const Listas = (props) => {
                     </ListItem>
                 </Link>
                 <Link to="/Proveedores">
-                <ListItem button>
+                <ListItem button onClick={() => props.accionAbrir()}>
                     <ListItemIcon>
                         <EventNoteIcon />
                     </ListItemIcon>
@@ -63,7 +66,7 @@ const Listas = (props) => {
                 </ListItem>
                 </Link>
                 <Link to="/Compras">
-                <ListItem button>
+                <ListItem button onClick={() => props.accionAbrir()}>
                     <ListItemIcon>
                         <ShoppingCartIcon />
                     </ListItemIcon>

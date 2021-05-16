@@ -245,8 +245,8 @@ const ApartVentas = () => {
                 />
                 </IconButton>
                   </td>
-                    <td>{venta.nombre + " " + venta.apellido}</td>
-                    <td>{venta.direccion}</td>
+                    <td  alignItems="center">{venta.nombre + " " + venta.apellido}</td>
+                    <td  align="center">{venta.direccion}</td>
                     <td>{venta.producto}</td>
                     <td>{venta.cantidad}</td>
                     <td>{venta.fecha_de_pedido}</td>

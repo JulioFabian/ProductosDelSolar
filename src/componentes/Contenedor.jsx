@@ -17,7 +17,6 @@ import ApartInventario from './inventario/ApartInventario';
 import ApartClient from './clientes/ApartClient';
 import ApartSupplier from './proveedores/ApartSupplier';
 import Portada from './inicio/Portada';
-import './Listas.css';
 import ApartCompras from './compras/ApartCompras';
 
 const estilos = makeStyles(theme => ({
@@ -50,6 +49,7 @@ const Contenedor = ( {usuario} ) => {
                 <Cajon 
                     variant="permanent"
                     open={true}
+                    accionAbrir={accionAbrir}
                 />
             </Hidden>
 
@@ -58,6 +58,7 @@ const Contenedor = ( {usuario} ) => {
                     variant="temporary"
                     open={abrir}
                     onClose={accionAbrir}
+                    accionAbrir={accionAbrir}
                 />
             </Hidden>
             <switch>

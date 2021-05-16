@@ -36,7 +36,7 @@ const Cajon = (props) => {
         >
             <div className={classes.toolbar}></div>
             <Divider />
-            <Listas />
+            <Listas accionAbrir={props.accionAbrir}/>
         </Drawer>
     )
 }
