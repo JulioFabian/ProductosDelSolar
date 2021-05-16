@@ -7,8 +7,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 import './Ventas.css'; 
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
-// import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-// import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import DoneIcon from '@material-ui/icons/Done';
 
 const ApartVentas = () => {
