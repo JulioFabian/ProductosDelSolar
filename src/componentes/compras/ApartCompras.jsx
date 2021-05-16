@@ -98,8 +98,7 @@ const ApartCompras = () => {
     var f = new FormData();
     f.append("cantidad", compraSeleccionada.cantidad);
     f.append("id_producto", compraSeleccionada.id_producto);
-    f.append("id_cliente", compraSeleccionada.id_cliente);
-    // f.append("fecha_de_compra", compraSeleccionada.fecha_de_compra);
+    f.append("id_proveedor", compraSeleccionada.id_proveedor);
     f.append("fecha_de_compra", compraSeleccionada.fecha_de_compra);
     f.append("METHOD", "POST");
     await axios.post(baseUrl, f)
@@ -115,9 +114,8 @@ const ApartCompras = () => {
   const peticionPut=async()=>{
     var f = new FormData();
     f.append("id_producto", compraSeleccionada.id_producto);
-    f.append("id_cliente", compraSeleccionada.id_cliente);
+    f.append("id_proveedor", compraSeleccionada.id_proveedor);
     f.append("cantidad", compraSeleccionada.cantidad);
-    // f.append("fecha_de_compra", compraSeleccionada.fecha_de_compra);
     f.append("fecha_de_compra", compraSeleccionada.fecha_de_compra);
     f.append("METHOD", "PUT");
     await axios.post(baseUrl, f, {params: {id: compraSeleccionada.id}})
@@ -194,13 +192,13 @@ const ApartCompras = () => {
       textAlign: "center",
       display: "flex",
     //   marginTop: "20px",
-      marginLeft: "100px",
+      marginLeft: "300px",
       color: "black",
     }}>
         <div>
             <div>
             <h1>Compras</h1>
-            {/* <IconButton 
+            <IconButton 
                     style={style2}
                     color="primary"
                     className="button muted-button"
@@ -212,7 +210,7 @@ const ApartCompras = () => {
                 >
                     <AddCircleOutlineOutlinedIcon style={style2}
                 />
-                </IconButton> */}
+                </IconButton>
             {/* <button className="btn btn-success" onClick={()=>abrirCerrarModalInsertar()}>Insertar</button> */}
             <br />
             
@@ -234,13 +232,13 @@ const ApartCompras = () => {
                 <tr key={compra.id}>
                   <td>
                   </td>
-                    <td>{compra.id_proveedor}</td>
-                    <td>{compra.id_producto}</td>
+                    <td>{compra.nombre}</td>
+                    <td>{compra.producto}</td>
                     <td>{compra.cantidad}</td>
                     <td>{compra.fecha_de_compra}</td>
                 <td>
 
-                {/* <IconButton 
+                <IconButton 
                     color="inherit"
                     className="button muted-button"
                     fontsize="small"
@@ -251,7 +249,7 @@ const ApartCompras = () => {
                 >
                     <CreateIcon fontSize="small" 
                 />
-                </IconButton> */}
+                </IconButton>
                 <IconButton 
                     color="inherit"
                     className="button muted-button"
@@ -287,7 +285,7 @@ const ApartCompras = () => {
                     <option selected disabled hidden>selecciona un proveedor</option>
                           {proveedores.map(proveedor => {
                             return (
-                      <option value={proveedor.id}>{proveedor.nombre + " " + proveedor.apellido}</option>
+                      <option value={proveedor.id}>{proveedor.nombre}</option>
                             );
                           })}
                     </select>
@@ -304,10 +302,8 @@ const ApartCompras = () => {
                     <input type="number" className="form-control" name="cantidad" onChange={handleChange}/>
                     {/* <label>Fecha de pedido: </label>
                     <input type="text" className="form-control" name="fecha_de_compra" onChange={handleChange}/> */}
-                    <label>Fecha de entrega: </label>
+                    <label>Fecha de compra: </label>
                     <input type="date" className="form-control" name="fecha_de_compra" onChange={handleChange}/>
-                    <label>Hora de entrega: </label>
-                    <input type="time" className="form-control" name="hora_de_entrega" onChange={handleChange}/>
                 </div>
             </ModalBody>
             <ModalFooter>
@@ -326,11 +322,11 @@ const ApartCompras = () => {
                   
 
                 <label>Cliente: </label>
-                    <select disabled type="select" name="id_cliente" id="id_cliente" onChange={handleChangeSelect}>
+                    <select disabled type="select" name="id_proveedor" id="id_proveedor" onChange={handleChangeSelect}>
                           {proveedores.map(proveedor => {
-                            if(proveedor.id === compraSeleccionada.id_cliente){
+                            if(proveedor.id === compraSeleccionada.id_proveedor){
                               return (
-                                <option selected value={proveedor.id}>{proveedor.nombre + " " + proveedor.apellido}</option>
+                                <option selected value={proveedor.id}>{proveedor.nombre}</option>
                               );
                             }
                           })}
@@ -350,9 +346,7 @@ const ApartCompras = () => {
                 <label>Cantidad: </label>
                 <input type="number" className="form-control" name="cantidad" onChange={handleChange} value={compraSeleccionada && compraSeleccionada.cantidad}/>
                 <label>Fecha de entrega: </label>
-                <input type="date" className="form-control" name="fecha_de_compra" onChange={handleChange} value={compraSeleccionada && compraSeleccionada.fecha_de_compra}/>
-                <label>Hora de entrega: </label>
-                <input type="time" className="form-control" name="hora_de_entrega" onChange={handleChange} value={compraSeleccionada && compraSeleccionada.hora_de_entrega}/>
+                <input disabled type="date" className="form-control" name="fecha_de_compra" onChange={handleChange} value={compraSeleccionada && compraSeleccionada.fecha_de_compra}/>
                 </div>
             </ModalBody>
             <ModalFooter>
