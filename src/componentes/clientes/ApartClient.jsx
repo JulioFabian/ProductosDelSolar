@@ -160,7 +160,6 @@ const ApartClient = () => {
             <table className="Client-center">
             <thead>
                 <tr>
-                <th>ID</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Telefono</th>
@@ -172,7 +171,6 @@ const ApartClient = () => {
             <tbody>
                 {data.map(cliente=>(
                 <tr key={cliente.id}>
-                    <td>{cliente.id}</td>
                     <td>{cliente.nombre}</td>
                     <td>{cliente.apellido}</td>
                     <td>{cliente.telefono}</td>

@@ -148,7 +148,6 @@ const ApartSupplier = () => {
             <table className="Proveedores-center">
             <thead>
                 <tr>
-                <th>ID</th>
                 <th>Nombre</th>
                 <th>Dirección</th>
                 <th>Telefono</th>
@@ -158,7 +157,6 @@ const ApartSupplier = () => {
             <tbody>
                 {data.map(proveedor=>(
                 <tr key={proveedor.id}>
-                    <td>{proveedor.id}</td>
                     <td>{proveedor.nombre}</td>
                     <td>{proveedor.direccion}</td>
                     <td>{proveedor.telefono}</td>

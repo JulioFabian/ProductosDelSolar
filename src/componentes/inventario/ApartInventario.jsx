@@ -166,7 +166,6 @@ const ApartInventario = () => {
             <table>
             <thead>
                 <tr>
-                <th>ID</th>
                 <th>Producto</th>
                 <th>Código</th>
                 <th>precioA</th>
@@ -180,7 +179,6 @@ const ApartInventario = () => {
             <tbody>
                 {data.map(inventario=>(
                 <tr key={inventario.id}>
-                    <td>{inventario.id}</td>
                     <td>{inventario.producto}</td>
                     <td>{inventario.codigo}</td>
                     <td>${inventario.precioa}</td>
