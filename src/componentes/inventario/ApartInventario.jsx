@@ -72,6 +72,7 @@ const ApartInventario = () => {
     }).catch(error=>{
       console.log(error);
     })
+    peticionGet();
   }
 
   const peticionPut=async()=>{
@@ -103,6 +104,7 @@ const ApartInventario = () => {
     }).catch(error=>{
       console.log(error);
     })
+    peticionGet();
   }
 
   const peticionDelete=async()=>{

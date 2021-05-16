@@ -64,6 +64,7 @@ const ApartSupplier = () => {
     }).catch(error=>{
       console.log(error);
     })
+    peticionGet();
   }
 
   const peticionPut=async()=>{
@@ -87,6 +88,7 @@ const ApartSupplier = () => {
     }).catch(error=>{
       console.log(error);
     })
+    peticionGet();
   }
 
   const peticionDelete=async()=>{

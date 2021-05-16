@@ -69,6 +69,7 @@ const ApartClient = () => {
     }).catch(error=>{
       console.log(error);
     })
+    peticionGet();
   }
 
   const peticionPut=async()=>{
@@ -96,6 +97,7 @@ const ApartClient = () => {
     }).catch(error=>{
       console.log(error);
     })
+    peticionGet();
   }
 
   const peticionDelete=async()=>{
